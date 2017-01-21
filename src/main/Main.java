@@ -2,7 +2,10 @@ package main;
 
 import database_objects.Client;
 import gui.LoginFrame;
+<<<<<<<<< Temporary merge branch 1
+=========
 import gui.MainFrame;
+>>>>>>>>> Temporary merge branch 2
 import gui.RegisterFrame;
 
 public class Main{
@@ -15,8 +18,11 @@ public class Main{
 	public static void main(String[] args) {
 		loginFrame = new LoginFrame();
 		loginFrame.show();
-	}
 
+<<<<<<<<< Temporary merge branch 1
+
+	}
+=========
 	public static Client getClient() {
 		return client;
 	}
@@ -38,4 +44,5 @@ public class Main{
 		registerFrame.show();
 	}
 
+>>>>>>>>> Temporary merge branch 2
 }
