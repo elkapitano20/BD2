@@ -1,11 +1,10 @@
 package gui;
 
-import java.awt.Color;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import java.awt.SystemColor;
 
 public class MainFrame {
 
@@ -29,7 +28,7 @@ public class MainFrame {
 		frame.getContentPane().setLayout(null);
 		
 		JButton productBtn = new JButton("Produkty");
-		productBtn.setBackground(Color.LIGHT_GRAY);
+		productBtn.setBackground(SystemColor.menu);
 		productBtn.setBounds(30, 10, 100, 20);
 		frame.getContentPane().add(productBtn);
 		
@@ -71,5 +70,9 @@ public class MainFrame {
 		JButton logoutBtn = new JButton("Wyloguj");
 		logoutBtn.setBounds(660, 9, 100, 20);
 		frame.getContentPane().add(logoutBtn);
+	}
+
+	public void show() {
+		frame.setVisible(true);
 	}
 }
