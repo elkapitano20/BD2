@@ -72,4 +72,8 @@ public class MainFrame {
 		logoutBtn.setBounds(660, 9, 100, 20);
 		frame.getContentPane().add(logoutBtn);
 	}
+
+	public void show() {
+		frame.setVisible(true);
+	}
 }

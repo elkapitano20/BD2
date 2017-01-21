@@ -4,8 +4,13 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+
+import main.Main;
+
 import javax.swing.JPasswordField;
 import java.awt.SystemColor;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class LoginFrame {
 
@@ -15,12 +20,52 @@ public class LoginFrame {
 	private JTextPane txtpnPassword;
 	private JButton registrationBtn;
 	private JPasswordField passwordField;
+	private MouseListener mouseListener;
+	private Main main;
+
 
 	/**
 	 * Create the application.
 	 */
 	public LoginFrame() {
+		mouseListener = new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String login= loginTxtField.getText();
+				String password = new String(passwordField.getPassword());
+				if (login(login,password)){
+					Main.setClient(login);
+					Main.goToMainFrame();
+				}
+			}
+		};
 		initialize();
+		
+	}
+
+	protected boolean login(String login, String password) {
+		return true;
 	}
 
 	/**
@@ -34,6 +79,7 @@ public class LoginFrame {
 		
 		JButton loginBtn = new JButton("Zaloguj");
 		loginBtn.setBounds(335, 50, 80, 20);
+		loginBtn.addMouseListener(mouseListener);
 		frame.getContentPane().add(loginBtn);
 		
 		loginTxtField = new JTextField();
@@ -67,5 +113,17 @@ public class LoginFrame {
 	
 	public void show(){
 		this.frame.setVisible(true);
+	}
+
+	public MouseListener getMouseListener() {
+		return mouseListener;
+	}
+
+	public void setMouseListener(MouseListener mouseListener) {
+		this.mouseListener = mouseListener;
+	}
+
+	public void dispose() {
+		frame.dispose();
 	}
 }
