@@ -1,46 +1,20 @@
 package main;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
 import database_objects.Client;
 import gui.LoginFrame;
 import gui.MainFrame;
+import gui.RegisterFrame;
 
-public class Main implements MouseListener{
+public class Main{
 
 	private static LoginFrame loginFrame;
 	private static MainFrame mainFrame;
+	private static RegisterFrame registerFrame;
 	private static Client client;
 	
 	public static void main(String[] args) {
 		loginFrame = new LoginFrame();
 		loginFrame.show();
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		loginFrame.getMouseListener().mouseClicked(e);
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		
 	}
 
 	public static Client getClient() {
@@ -56,6 +30,12 @@ public class Main implements MouseListener{
 		loginFrame.dispose();
 		mainFrame = new MainFrame();
 		mainFrame.show();
+	}
+	
+	public static void goToRegisterFrame() {
+		loginFrame.dispose();
+		registerFrame = new RegisterFrame();
+		registerFrame.show();
 	}
 
 }

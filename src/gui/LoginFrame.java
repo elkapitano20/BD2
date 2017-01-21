@@ -21,7 +21,6 @@ public class LoginFrame {
 	private JButton registrationBtn;
 	private JPasswordField passwordField;
 	private MouseListener mouseListener;
-	private Main main;
 
 
 	/**
