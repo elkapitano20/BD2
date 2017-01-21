@@ -33,9 +33,10 @@ public class LoginFrame {
 		class ButtonClickListener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				String command = e.getActionCommand();
-				if( command.equals( "OK" ))  {
-					RegisterFrame r = new RegisterFrame();
-					r.show();
+				if( command.equals( "Rejestracja" ))  {
+					RegisterFrame RegFrame = new RegisterFrame();
+					RegFrame.show();
+                    frame.setVisible(false);
 				}
 			}
 		}
@@ -43,7 +44,7 @@ public class LoginFrame {
 		frame.setBounds(100, 100, 450, 229);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+
 		JButton loginBtn = new JButton("Zaloguj");
 		loginBtn.setBounds(335, 50, 80, 20);
 		frame.getContentPane().add(loginBtn);
@@ -65,11 +66,11 @@ public class LoginFrame {
 		txtpnPassword.setText("Has\u0142o");
 		txtpnPassword.setBounds(180, 50, 40, 20);
 		frame.getContentPane().add(txtpnPassword);
-		
+
 		registrationBtn = new JButton("Rejestracja");
 		registrationBtn.setBounds(180, 112, 100, 20);
 		frame.getContentPane().add(registrationBtn);
-		registrationBtn.setActionCommand("OK");
+		registrationBtn.setActionCommand("Rejestracja");
 		registrationBtn.addActionListener(new ButtonClickListener());
 
 		passwordField = new JPasswordField();
