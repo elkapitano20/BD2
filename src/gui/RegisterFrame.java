@@ -135,4 +135,7 @@ public class RegisterFrame {
 		frame.getContentPane().add(backToLoginBtn);
 	}
 
+	public void show(){
+		this.frame.setVisible(true);
+	}
 }
