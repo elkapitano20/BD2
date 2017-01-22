@@ -5,32 +5,40 @@ package database_objects;
  * All rights is okey =)
  */
 public class Warehouse {
-    private String priceProdWar;
+    private int priceProdWar;
     private String aboutProdWar;
     private String aboutWar;
+    private int idPozMagaz;
 
-    public void setPriceProdWar(String priceProdWar) {
-        this.priceProdWar = priceProdWar;
-    }
-
-    public void setAboutProdWar(String aboutProdWar) {
-        this.aboutProdWar = aboutProdWar;
-    }
-
-    public void setAboutWar(String aboutWar) {
-        this.aboutWar = aboutWar;
-    }
-
-    public String getPriceProdWar() {
-
+    public int getPriceProdWar() {
         return priceProdWar;
+    }
+
+    public void setPriceProdWar(int priceProdWar) {
+        this.priceProdWar = priceProdWar;
     }
 
     public String getAboutProdWar() {
         return aboutProdWar;
     }
 
+    public void setAboutProdWar(String aboutProdWar) {
+        this.aboutProdWar = aboutProdWar;
+    }
+
     public String getAboutWar() {
         return aboutWar;
+    }
+
+    public void setAboutWar(String aboutWar) {
+        this.aboutWar = aboutWar;
+    }
+
+    public int getIdPozMagaz() {
+        return idPozMagaz;
+    }
+
+    public void setIdPozMagaz(int idPozMagaz) {
+        this.idPozMagaz = idPozMagaz;
     }
 }

@@ -1,13 +1,23 @@
 package database_objects;
 
 public class Client {
+    private int idClient;
+    private int idKoszyka;
     private String nameClient;
     private String lastNameClient;
-    private String peselClient;
+    private int peselClient;
     private String usernameClient;
     private String adresClient;
     private String emailClient;
     private String telephoneClient;
+
+    public void setIdClient(int idClient) {
+        this.idClient = idClient;
+    }
+
+    public void setIdKoszyka(int idKoszyka) {
+        this.idKoszyka = idKoszyka;
+    }
 
     public void setNameClient(String nameClient) {
         this.nameClient = nameClient;
@@ -17,7 +27,7 @@ public class Client {
         this.lastNameClient = lastNameClient;
     }
 
-    public void setPeselClient(String peselClient) {
+    public void setPeselClient(int peselClient) {
         this.peselClient = peselClient;
     }
 
@@ -37,6 +47,14 @@ public class Client {
         this.telephoneClient = telephoneClient;
     }
 
+    public int getIdClient() {
+        return idClient;
+    }
+
+    public int getIdKoszyka() {
+        return idKoszyka;
+    }
+
     public String getNameClient() {
 
         return nameClient;
@@ -46,7 +64,7 @@ public class Client {
         return lastNameClient;
     }
 
-    public String getPeselClient() {
+    public int getPeselClient() {
         return peselClient;
     }
 

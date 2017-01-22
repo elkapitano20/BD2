@@ -1,18 +1,45 @@
 package database_objects;
 
+import java.util.Date;
 /**
  * Created by savch on 21.01.2017.
  * All rights is okey =)
  */
 public class Order {
-    private String dateOrder;
+    private Date dateOrder;
+    private int idOrder;
+    private int idFaktury;
+    private int idKosz;
 
-    public void setDateOrder(String dateOrder) {
+    public Date getDateOrder() {
+        return dateOrder;
+    }
+
+    public void setDateOrder(Date dateOrder) {
         this.dateOrder = dateOrder;
     }
 
-    public String getDateOrder() {
+    public int getIdOrder() {
+        return idOrder;
+    }
 
-        return dateOrder;
+    public void setIdOrder(int idOrder) {
+        this.idOrder = idOrder;
+    }
+
+    public int getIdFaktury() {
+        return idFaktury;
+    }
+
+    public void setIdFaktury(int idFaktury) {
+        this.idFaktury = idFaktury;
+    }
+
+    public int getIdKosz() {
+        return idKosz;
+    }
+
+    public void setIdKosz(int idKosz) {
+        this.idKosz = idKosz;
     }
 }
