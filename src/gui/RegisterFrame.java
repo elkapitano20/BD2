@@ -2,11 +2,15 @@ package gui;
 
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+
+import main.Main;
 
 public class RegisterFrame {
 
@@ -18,11 +22,30 @@ public class RegisterFrame {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
+	private ActionListener actionListener;
 
 	/**
 	 * Create the application.
 	 */
 	public RegisterFrame() {
+		actionListener = new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String command = e.getActionCommand();
+				if (command == "Zarejestruj siê"){
+					saveRegistrationForm();
+				}
+				else{
+					Main.goFromRegisterToLogin();
+				}
+				
+			}
+			//TODO napisaæ tê metodê i w odpowiednie miejsce j¹ przerzuciæ
+			private void saveRegistrationForm() {
+				// TODO Auto-generated method stub
+			}
+		};
 		initialize();
 	}
 
@@ -126,12 +149,14 @@ public class RegisterFrame {
 		frame.getContentPane().add(textField_6);
 		textField_6.setColumns(10);
 		
-		JButton registerBtn = new JButton("Zarejestruj si\u0119");
+		JButton registerBtn = new JButton("Zarejestruj siê");
 		registerBtn.setBounds(360, 299, 110, 20);
+		registerBtn.addActionListener(actionListener);
 		frame.getContentPane().add(registerBtn);
 		
-		JButton backToLoginBtn = new JButton("Powr\u00F3t");
+		JButton backToLoginBtn = new JButton("Powrót");
 		backToLoginBtn.setBounds(360, 330, 110, 20);
+		backToLoginBtn.addActionListener(actionListener);
 		frame.getContentPane().add(backToLoginBtn);
 	}
 
@@ -139,4 +164,7 @@ public class RegisterFrame {
 		frame.setVisible(true);
 	}
 
+	public void dispose() {
+		frame.dispose();
+	}
 }
