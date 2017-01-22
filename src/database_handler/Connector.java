@@ -13,8 +13,6 @@ static Connection conn = null;
 
 public void connect() {
 	
-	Statement stmt = null;
-	
 	try{
 		
 	System.out.println("Connecting to database...");

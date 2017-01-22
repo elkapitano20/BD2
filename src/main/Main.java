@@ -4,7 +4,6 @@ import database_objects.Client;
 import gui.LoginFrame;
 import gui.MainFrame;
 import gui.RegisterFrame;
-
 import database_handler.*;
 public class Main{
 
@@ -12,6 +11,8 @@ public class Main{
 	private static MainFrame mainFrame;
 	private static RegisterFrame registerFrame;
 	private static Client client;
+
+
 	
 	public static void main(String[] args) {
 		Connector conn = new Connector();
@@ -19,8 +20,6 @@ public class Main{
 		conn.executeQuery("SELECT * from EMP");
 		loginFrame = new LoginFrame();
 		loginFrame.show();
-		
-		conn.disconnect();
 	}
 	public static Client getClient() {
 		return client;

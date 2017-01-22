@@ -1,20 +1,19 @@
 package gui;
 
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
+import javax.swing.*;
 
+import exceptions.LoginException;
+import main.LoginData;
 import main.Main;
 
-import javax.swing.JPasswordField;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.*;
 
 public class LoginFrame {
 
-	private JFrame frame;
+	private JFrame frame, frameAlert;
 	private JTextField loginTxtField;
 	private JTextPane txtpnLogin;
 	private JTextPane txtpnPassword;
@@ -23,11 +22,18 @@ public class LoginFrame {
 	private ActionListener actionListener;
 
 
+	List<LoginData> logDatLst = new ArrayList<>();
 	/**
 	 * Create the application.
 	 */
 	
 	public LoginFrame() {
+		//Test data List for logging in
+		logDatLst.add(new LoginData("andrii", "111"));
+		logDatLst.add(new LoginData("savchuk", "222"));
+		logDatLst.add(new LoginData("olha", "333"));
+		//-----
+
 		actionListener = new ActionListener() {
 			
 			@Override
@@ -38,9 +44,18 @@ public class LoginFrame {
 				}else if (command.equals( "Zaloguj" )) {
 					String login= loginTxtField.getText();
 					String password = new String(passwordField.getPassword());
-					if (login(login,password)){
-						Main.setClient(login);
-						Main.goToMainFrame();
+					LoginData logDat = new LoginData(login, password);
+					try {
+						if (login(logDat)) {
+							Main.setClient(logDat.getLogin());
+							Main.goToMainFrame();
+						}
+					}catch (LoginException e1){
+						frameAlert = new JFrame();
+						JOptionPane.showMessageDialog(frameAlert,
+								"Niepoprawne dane logowania",
+								"Wrong Login or password!",
+								JOptionPane.WARNING_MESSAGE);
 					}
 				}
 				
@@ -50,9 +65,16 @@ public class LoginFrame {
 		
 	}
 
-	protected boolean login(String login, String password) {
-		//TODO logowanie u¿ytkownika
-		return true;
+
+	protected boolean login(LoginData loginObj) throws LoginException{
+			for (LoginData x : logDatLst) {
+				if (Objects.equals(x.getLogin(), loginObj.getLogin()) && Objects.equals(x.getPassword(), loginObj.getPassword())) {
+					//System.out.print("Hello");
+					return true;
+				}
+			}
+		//System.out.print("Bye");
+		throw new LoginException();
 	}
 
 	/**
@@ -83,6 +105,7 @@ public class LoginFrame {
 		frame.getContentPane().add(txtpnLogin);
 		
 		txtpnPassword = new JTextPane();
+		txtpnPassword.setEditable(false);
 		txtpnPassword.setBackground(SystemColor.menu);
 		txtpnPassword.setText("Has\u0142o");
 		txtpnPassword.setBounds(180, 50, 40, 20);
