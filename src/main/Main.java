@@ -16,8 +16,11 @@ public class Main{
 	public static void main(String[] args) {
 		Connector conn = new Connector();
 		conn.connect();
+		
 		loginFrame = new LoginFrame();
 		loginFrame.show();
+		
+		conn.disconnect();
 	}
 
 	public static Client getClient() {

@@ -10,6 +10,7 @@ static final String PASS = "tferens";
 static final String JDBC_DRIVER = "df";
 static final String DB_URL = "jdbc:oracle:thin:@ora3.elka.pw.edu.pl:1521:ora3inf";
 
+static Connection conn = null;
 static {
 	try {
 		Class.forName("oracle.jdbc.OracleDriver");
@@ -20,7 +21,7 @@ static {
 }
 
 public void connect() {
-	Connection conn = null;
+	
 	Statement stmt = null;
 	
 	try{
@@ -37,13 +38,19 @@ public void connect() {
 	}catch(Exception e){
 		e.printStackTrace();
 	}
-	//close connection
-	try{
-		if(conn!=null)
-			conn.close();
-	}catch(SQLException sqlEx){
-		sqlEx.printStackTrace();
+	
+	if (conn != null) {
+	    System.out.println("Connected!");
 	}
-	System.out.println("Successfully closed connection to database ...");
+}
+
+public void disconnect(){
+		try{
+			if(conn!=null)
+				conn.close();
+		}catch(SQLException sqlEx){
+			sqlEx.printStackTrace();
+		}
+		System.out.println("Successfully closed connection to database ...");
 }
 }
