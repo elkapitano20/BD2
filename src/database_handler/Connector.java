@@ -8,7 +8,7 @@ static final String USER = "tferens";
 static final String PASS = "tferens";
 
 static final String JDBC_DRIVER = "df";
-static final String DB_URL = "jdbc:oracle:thin:@//ora3.elka.pw.edu.pl:1521/ora3inf";
+static final String DB_URL = "jdbc:oracle:thin:@ora3.elka.pw.edu.pl:1521:ora3inf";
 
 static {
 	try {
