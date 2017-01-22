@@ -4,7 +4,7 @@ package database_objects;
  * Created by savch on 21.01.2017.
  * All rights is okey =)
  */
-public class Products {
+public class Product {
     private String nameProduct;
     private String aboutProduct;
     private int priceProduct;

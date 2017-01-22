@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by savch on 21.01.2017.
  * All rights is okey =)
  */
-public class Faktura {
+public class Invoice {
     private String dateFaktura;
     private int idFaktury;
     private Date dataFaktury;
