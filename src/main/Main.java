@@ -5,6 +5,7 @@ import gui.LoginFrame;
 import gui.MainFrame;
 import gui.RegisterFrame;
 
+import database_handler.*;
 public class Main{
 
 	private static LoginFrame loginFrame;
@@ -13,6 +14,8 @@ public class Main{
 	private static Client client;
 	
 	public static void main(String[] args) {
+		Connector conn = new Connector();
+		conn.connect();
 		loginFrame = new LoginFrame();
 		loginFrame.show();
 	}
