@@ -5,16 +5,21 @@ import gui.LoginFrame;
 import gui.MainFrame;
 import gui.RegisterFrame;
 
+import java.util.HashMap;
+
 public class Main{
 
 	private static LoginFrame loginFrame;
 	private static MainFrame mainFrame;
 	private static RegisterFrame registerFrame;
 	private static Client client;
+
+
 	
 	public static void main(String[] args) {
 		loginFrame = new LoginFrame();
 		loginFrame.show();
+
 	}
 	public static Client getClient() {
 		return client;
