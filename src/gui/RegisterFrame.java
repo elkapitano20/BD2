@@ -89,7 +89,7 @@ public class RegisterFrame {
 		JTextPane txtpnUsername = new JTextPane();
 		txtpnUsername.setBackground(SystemColor.menu);
 		txtpnUsername.setEditable(false);
-		txtpnUsername.setText("Nazwa u\u017Cytkownika");
+		txtpnUsername.setText("Username u\u017Cytkownika");
 		txtpnUsername.setBounds(20, 150, 100, 20);
 		frame.getContentPane().add(txtpnUsername);
 		
