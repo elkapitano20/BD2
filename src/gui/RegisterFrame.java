@@ -4,9 +4,12 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
@@ -14,7 +17,9 @@ import main.Main;
 
 public class RegisterFrame {
 
+	private JFrame alertFrame;
 	private JFrame frame;
+	
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -23,7 +28,10 @@ public class RegisterFrame {
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private ActionListener actionListener;
-
+	
+	private Vector<String> dataValues = new Vector<String>(); 
+	private Vector<JTextField> jFieldValues = new Vector<JTextField>();
+	
 	/**
 	 * Create the application.
 	 */
@@ -43,7 +51,13 @@ public class RegisterFrame {
 			}
 			//TODO napisaæ tê metodê i w odpowiednie miejsce j¹ przerzuciæ
 			private void saveRegistrationForm() {
-				// TODO Auto-generated method stub
+		if(obtainValues())
+		{
+			//TODO : save in DB
+		}else{
+		alertFrame = new JFrame();
+		JOptionPane.showMessageDialog(alertFrame, "Wszystkie pola musz¹ byæ wype³nione !");
+		}
 			}
 		};
 		initialize();
@@ -158,6 +172,28 @@ public class RegisterFrame {
 		backToLoginBtn.setBounds(360, 330, 110, 20);
 		backToLoginBtn.addActionListener(actionListener);
 		frame.getContentPane().add(backToLoginBtn);
+	}
+	
+	private boolean obtainValues() {
+		jFieldValues.addElement(textField);
+		jFieldValues.addElement(textField_1);
+		jFieldValues.addElement(textField_2);
+		jFieldValues.addElement(textField_3);
+		jFieldValues.addElement(textField_4);
+		jFieldValues.addElement(textField_5);
+		jFieldValues.addElement(textField_6);
+		
+		for(Iterator<JTextField> tf = jFieldValues.iterator(); tf.hasNext();)
+		{	
+			String str = tf.next().getText();
+			if(str.length() != 0){
+				dataValues.add(str);
+			}
+			else {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public void show() {
