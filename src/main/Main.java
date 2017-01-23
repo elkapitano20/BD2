@@ -16,7 +16,7 @@ public class Main{
 	public static void main(String[] args) {
 		Connector conn = new Connector();
 		conn.connect();
-		conn.executeQuery("SELECT * from EMP");
+		conn.executeQuery("#queSELECT * from CLIENTS");
 		loginFrame = new LoginFrame();
 		loginFrame.show();
 		

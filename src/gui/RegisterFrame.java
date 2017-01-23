@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Statement;
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -13,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
+import database_handler.*;
 import main.Main;
 
 public class RegisterFrame {
@@ -53,7 +55,9 @@ public class RegisterFrame {
 			private void saveRegistrationForm() {
 		if(obtainValues())
 		{
-			//TODO : save in DB
+			Connector conn = new Connector();
+			conn.executeUpdateWrapper(("INSERT INTO CLIENTS " +
+	                   "VALUES(6626, 'Su2mit', 'Mitta2l', 'du2peusz','lol2kowa 2','dup@du2pa',070088220)"));
 		}else{
 		alertFrame = new JFrame();
 		JOptionPane.showMessageDialog(alertFrame, "Wszystkie pola musz¹ byæ wype³nione !");
