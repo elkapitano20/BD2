@@ -2,6 +2,12 @@ package gui_panels;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.sun.xml.internal.bind.v2.TODO;
+import database_handler.*;
+import database_objects.Product;
 
 public class ProductsPanel extends JPanel {
 
@@ -9,8 +15,8 @@ public class ProductsPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 2L;
-	
-
+	private static int count = 0;
+	private static int rsSize = 0;
 	/**
 	 * Create the panel.
 	 */
@@ -18,13 +24,71 @@ public class ProductsPanel extends JPanel {
 		setLayout(new BorderLayout());
 		setBackground(new Color(77,81,84));
 
-		String[] columnNames = {"First Name",
-				"Last Name",
-				"Sport",
-				"# of Years",
-				"Vegetarian"};
+		String[] columnNames = {"ID Produktu",
+				"ID Categorii",
+				"ID Productu w magazynie",
+				"Nazwa",
+				"Opis",
+				"Price",
+				"Status"};
 
-		Object[][] data = {
+		try{
+
+			//TODO: more complicated select with joins
+
+			String sql = "SELECT PRODUCT_ID, CATEGORY_ID, WAREHOUSE_PRODUCT_ID, NAME, OPIS, PRICE, STATUS" +
+					" FROM PRODUCTS" ;
+			Connector con = new Connector();
+			ResultSet rs1 = con.executeQuery(sql);
+			while(rs1.next()){
+				rsSize++;
+			}
+			ResultSet rs = con.executeQuery(sql);
+			Object[][] data = new Object[rsSize][7];
+			while(rs.next()){
+
+				//Retrieve by column name
+				String prodID  = rs.getString("PRODUCT_ID");
+				String catID = rs.getString("CATEGORY_ID");
+				String werProdID = rs.getString("WAREHOUSE_PRODUCT_ID");
+				String name  = rs.getString("NAME");
+				String opis = rs.getString("OPIS");
+				String price = rs.getString("PRICE");
+				String stat = rs.getString("STATUS");
+
+				data[count][0] = prodID;
+				data[count][1] = catID;
+				data[count][2] = werProdID;
+				data[count][3] = name;
+				data[count][4] = opis;
+				data[count][5] = price;
+				data[count][6] = stat;
+
+				//Display values
+				/*System.out.print("prodID: " + prodID);
+				System.out.print(", catID: " + catID);
+				System.out.print(", werProdID: " + werProdID);
+				System.out.print(", name: " + name);
+				System.out.print(", opis: " + opis);
+				System.out.print(", price: " + price);
+				System.out.print(", stat: " + stat);
+				System.out.println();
+				System.out.println(rs.getFetchSize());*/
+				count++;
+			}
+			/*System.out.println(count);*/
+			JTable table = new JTable(data, columnNames);
+			table.setVisible(true);
+			JScrollPane scrollPane = new JScrollPane(table);
+			table.setFillsViewportHeight(true);
+
+			add(scrollPane, BorderLayout.CENTER) ;
+		}catch (SQLException sqlEx){
+			System.out.println("Couldn't prepare statement");
+			//sqlEx.printStackTrace();
+		}
+
+		/*Object[][] data = {
 				{"Kathy", "Smith",
 						"Snowboarding", new Integer(5), new Boolean(false)},
 				{"John", "Doe",
@@ -35,21 +99,10 @@ public class ProductsPanel extends JPanel {
 						"Speed reading", new Integer(20), new Boolean(true)},
 				{"Joe", "Brown",
 						"Pool", new Integer(10), new Boolean(false)}
-		};
+		};*/
 
-		JTable table = new JTable(data, columnNames);
-		table.setVisible(true);
-		JScrollPane scrollPane = new JScrollPane(table);
-		table.setFillsViewportHeight(true);
 
-		/*setLayout(new BorderLayout());
-		add(table.getTableHeader(), BorderLayout.PAGE_START);
-		add(table, BorderLayout.CENTER);*/
-		add(table, BorderLayout.CENTER);
-		add(scrollPane, BorderLayout.CENTER) ;
-
-		/*JLabel txtpnHelloFromProducts = new JLabel("Hello from products panel");
-		txtpnHelloFromProducts.setBounds(50, 100, 150, 20);
-		add(txtpnHelloFromProducts);*/
 	}
 }
+
+
