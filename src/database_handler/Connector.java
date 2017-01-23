@@ -72,7 +72,6 @@ public ResultSet executeQuery(String query) {
 			System.out.println(statement);
 			throw new RuntimeException("Improper command selected");
 	}
-	return rs;
 	}catch (SQLException sqlEx){
 		System.out.println("Couldn't prepare statement");
 		sqlEx.printStackTrace();
