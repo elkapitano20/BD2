@@ -138,7 +138,7 @@ public class MainFrame {
 		frame.getContentPane().remove(panel);
 		panel = t;
 		panel.setBounds(0, 72, 784, 489);
-		panel.setLayout(null);
+//		panel.setLayout(null);
 		frame.getContentPane().add(panel);
 		frame.repaint();
 	}

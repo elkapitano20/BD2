@@ -45,7 +45,7 @@ public class ProductsPanel extends JPanel {
 		/*setLayout(new BorderLayout());
 		add(table.getTableHeader(), BorderLayout.PAGE_START);
 		add(table, BorderLayout.CENTER);*/
-		add(table, BorderLayout.CENTER);
+//		add(table, BorderLayout.CENTER);
 		add(scrollPane, BorderLayout.CENTER) ;
 
 		/*JLabel txtpnHelloFromProducts = new JLabel("Hello from products panel");

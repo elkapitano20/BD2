@@ -20,6 +20,7 @@ public class Main{
 		conn.executeQuery("SELECT * from Products");
 		loginFrame = new LoginFrame();
 		loginFrame.show();
+		conn.disconnect();
 	}
 	public static Client getClient() {
 		return client;
