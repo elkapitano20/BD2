@@ -47,17 +47,41 @@ public void disconnect(){
 }
 
 public ResultSet executeQuery(String query) {
+	connect();
 	System.out.println("Creating Statement ...");
 	Statement stmt = null;
 	ResultSet rs = null;
 	try{
 	stmt = conn.createStatement();
-	rs = stmt.executeQuery(query);
+	String command = query.substring(0,4);
+	String statement = query.substring(4,query.length());
+	switch(command)
+	{
+	case "#upd":
+		stmt.executeUpdate(statement);
+		break;
+	case "#del":
+		break;
+	case "#ins":
+		break;
+	case "#que":
+//		System.out.println(statement);
+	rs = stmt.executeQuery(statement);
+	break;
+		default:
+			System.out.println(statement);
+			throw new RuntimeException("Improper command selected");
+	}
 	return rs;
 	}catch (SQLException sqlEx){
 		System.out.println("Couldn't prepare statement");
 		sqlEx.printStackTrace();
 	}
+	disconnect();
 	return rs;
+}
+public void executeUpdateWrapper(String query) {
+	String q = "#upd"+query;
+	executeQuery(q);
 }
 }
