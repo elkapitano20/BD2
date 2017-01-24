@@ -52,7 +52,7 @@ public class RegisterFrame {
 				
 			}
 			private void saveRegistrationForm() {
-		if(!obtainValues())
+		if(obtainValues())
 		{
 			Connector conn = new Connector();
 			String query = "INSERT INTO CLIENTS(CLIENT_ID, FIRST_NAME, LAST_NAME, USERNAME, ADDRESS, EMAIL, CONTACT_NUMBER) VALUES(?,?,?,?,?,?,?);";
@@ -186,6 +186,7 @@ public class RegisterFrame {
 		jFieldValues.addElement(textField_5);
 		jFieldValues.addElement(textField_6);
 		
+		//Extract values from text field and check if any of them is null string
 		for(Iterator<JTextField> tf = jFieldValues.iterator(); tf.hasNext();)
 		{	
 			String str = tf.next().getText();

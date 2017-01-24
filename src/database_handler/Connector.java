@@ -14,10 +14,7 @@ static Connection conn = null;
 
 public void connect() {
 	
-	Statement stmt = null;
-	
 	try{
-		
 	System.out.println("Connecting to database...");
 	
 	Class.forName("oracle.jdbc.OracleDriver");
@@ -73,7 +70,7 @@ public ResultSet executeQuery(String query, Vector<String> args) {
 //		stmt.setString(5, "'sccc'");
 //		stmt.setString(6, "'sccc'+");
 //		stmt.setString(7, "45454");
-		System.out.println("before executingUpdate \n");
+//		System.out.println("before executingUpdate \n");
 		stmt.executeUpdate();
 		break;
 	case "#del":
@@ -95,7 +92,7 @@ public ResultSet executeQuery(String query, Vector<String> args) {
 		System.out.println("Couldn't prepare statement");
 		sqlEx.printStackTrace();
 	}
-	System.out.println("disconnect");
+//	System.out.println("disconnect");
 	disconnect();
 	return rs;
 }
