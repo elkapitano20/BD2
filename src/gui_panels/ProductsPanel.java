@@ -46,6 +46,7 @@ public class ProductsPanel extends JPanel {
 								"INNER JOIN WAREHOUSE w " +
 									"ON p.WAREHOUSE_PRODUCT_ID = w.WAREHOUSE_PRODUCT_ID";
 
+
 			Connector con = new Connector();
 			ResultSet rs1 = con.executeQuery(sql);
 			while(rs1.next()){
