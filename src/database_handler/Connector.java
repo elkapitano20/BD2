@@ -1,7 +1,8 @@
 package database_handler;
 
 import java.sql.*;
-
+import java.util.Vector;
+import java.math.*;
 public class Connector {
 	
 static final String USER = "mkhombak";
@@ -46,41 +47,60 @@ public void disconnect(){
 		System.out.println("Successfully closed connection to database ...");
 }
 
-public ResultSet executeQuery(String query) {
+public ResultSet executeQuery(String query, Vector<String> args) {
 	connect();
 	System.out.println("Creating Statement ...");
-	Statement stmt = null;
+	PreparedStatement stmt = null;
 	ResultSet rs = null;
 	try{
-	stmt = conn.createStatement();
 	String command = query.substring(0,4);
 	String statement = query.substring(4,query.length());
+	stmt = conn.prepareStatement(query);
 	switch(command)
 	{
 	case "#upd":
-		stmt.executeUpdate(statement);
+		System.out.println(statement);
+		
+		stmt.setLong(1,Integer.parseInt(args.elementAt(0)));
+		for(int i=1; i<args.size(); i++)
+		{
+			stmt.setString(i+1,args.elementAt(i));
+			System.out.println(args.elementAt(i));
+		}
+//		stmt.setString(2, "'sccc'");
+//		stmt.setString(3, "'sccc'");
+//		stmt.setString(4, "'sccc'");
+//		stmt.setString(5, "'sccc'");
+//		stmt.setString(6, "'sccc'+");
+//		stmt.setString(7, "45454");
+		System.out.println("before executingUpdate \n");
+		stmt.executeUpdate();
 		break;
 	case "#del":
 		break;
 	case "#ins":
 		break;
 	case "#que":
-//		System.out.println(statement);
+		System.out.println(statement);
 	rs = stmt.executeQuery(statement);
 	break;
 		default:
 			System.out.println(statement);
 			throw new RuntimeException("Improper command selected");
 	}
+	System.out.println("poza switchem");
+	if(stmt != null)
+		stmt.close();
 	}catch (SQLException sqlEx){
 		System.out.println("Couldn't prepare statement");
 		sqlEx.printStackTrace();
 	}
+	System.out.println("disconnect");
 	disconnect();
 	return rs;
 }
-public void executeUpdateWrapper(String query) {
+public void executeUpdateWrapper(String query,Vector<String> args) {
 	String q = "#upd"+query;
-	executeQuery(q);
+	executeQuery(q,args);
 }
 }
