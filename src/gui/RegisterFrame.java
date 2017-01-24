@@ -51,13 +51,12 @@ public class RegisterFrame {
 				}
 				
 			}
-			//TODO napisaæ tê metodê i w odpowiednie miejsce j¹ przerzuciæ
 			private void saveRegistrationForm() {
-		if(obtainValues())
+		if(!obtainValues())
 		{
 			Connector conn = new Connector();
-			conn.executeUpdateWrapper(("INSERT INTO CLIENTS " +
-	                   "VALUES(6626, 'Su2mit', 'Mitta2l', 'du2peusz','lol2kowa 2','dup@du2pa',070088220)"));
+			String query = "INSERT INTO CLIENTS(CLIENT_ID, FIRST_NAME, LAST_NAME, USERNAME, ADDRESS, EMAIL, CONTACT_NUMBER) VALUES(?,?,?,?,?,?,?);";
+			conn.executeUpdateWrapper(query, dataValues);
 		}else{
 		alertFrame = new JFrame();
 		JOptionPane.showMessageDialog(alertFrame, "Wszystkie pola musz¹ byæ wype³nione !");
