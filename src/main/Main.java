@@ -17,7 +17,7 @@ public class Main{
 	public static void main(String[] args) {
 		Connector conn = new Connector();
 		conn.connect();
-		conn.executeQuery("SELECT * from Products");
+//		conn.executeQuery("#queSELECT * from CLIENTS");
 		loginFrame = new LoginFrame();
 		loginFrame.show();
 		conn.disconnect();
