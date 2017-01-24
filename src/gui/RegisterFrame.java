@@ -55,8 +55,8 @@ public class RegisterFrame {
 		if(obtainValues())
 		{
 			Connector conn = new Connector();
-			String query = "INSERT INTO CLIENTS(CLIENT_ID, FIRST_NAME, LAST_NAME, USERNAME, ADDRESS, EMAIL, CONTACT_NUMBER) VALUES(?,?,?,?,?,?,?);";
-			conn.executeUpdateWrapper(query, dataValues);
+			String query = "#updINSERT INTO CLIENTS(CLIENT_ID, FIRST_NAME, LAST_NAME, USERNAME, ADDRESS, EMAIL, CONTACT_NUMBER) VALUES(?,?,?,?,?,?,?)";
+			conn.executeDB(query, dataValues);
 		}else{
 		alertFrame = new JFrame();
 		JOptionPane.showMessageDialog(alertFrame, "Wszystkie pola musz¹ byæ wype³nione !");

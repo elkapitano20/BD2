@@ -4,6 +4,8 @@ import database_objects.Client;
 import gui.LoginFrame;
 import gui.MainFrame;
 import gui.RegisterFrame;
+import java.util.Vector;
+
 import database_handler.*;
 public class Main{
 
@@ -17,7 +19,8 @@ public class Main{
 	public static void main(String[] args) {
 		Connector conn = new Connector();
 		conn.connect();
-//		conn.executeQuery("#queSELECT * from CLIENTS");
+		//exemplary query
+		conn.executeDB("#queSELECT * from CLIENTS",new Vector<String>());
 		loginFrame = new LoginFrame();
 		loginFrame.show();
 		conn.disconnect();

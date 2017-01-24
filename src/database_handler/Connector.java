@@ -44,33 +44,27 @@ public void disconnect(){
 		System.out.println("Successfully closed connection to database ...");
 }
 
-public ResultSet executeQuery(String query, Vector<String> args) {
+public ResultSet executeDB(String query, Vector<String> args) {
 	connect();
 	System.out.println("Creating Statement ...");
 	PreparedStatement stmt = null;
 	ResultSet rs = null;
 	try{
+		//Extract the command prefix and statement
 	String command = query.substring(0,4);
 	String statement = query.substring(4,query.length());
-	stmt = conn.prepareStatement(query);
+	
+	stmt = conn.prepareStatement(statement);
 	switch(command)
 	{
 	case "#upd":
 		System.out.println(statement);
-		
+
 		stmt.setLong(1,Integer.parseInt(args.elementAt(0)));
 		for(int i=1; i<args.size(); i++)
 		{
-			stmt.setString(i+1,args.elementAt(i));
-			System.out.println(args.elementAt(i));
+			stmt.setString(i+1,args.elementAt(i));//args for prepares stmts are indexed from 1!
 		}
-//		stmt.setString(2, "'sccc'");
-//		stmt.setString(3, "'sccc'");
-//		stmt.setString(4, "'sccc'");
-//		stmt.setString(5, "'sccc'");
-//		stmt.setString(6, "'sccc'+");
-//		stmt.setString(7, "45454");
-//		System.out.println("before executingUpdate \n");
 		stmt.executeUpdate();
 		break;
 	case "#del":
@@ -78,7 +72,6 @@ public ResultSet executeQuery(String query, Vector<String> args) {
 	case "#ins":
 		break;
 	case "#que":
-		System.out.println(statement);
 	rs = stmt.executeQuery(statement);
 	break;
 		default:
@@ -92,12 +85,7 @@ public ResultSet executeQuery(String query, Vector<String> args) {
 		System.out.println("Couldn't prepare statement");
 		sqlEx.printStackTrace();
 	}
-//	System.out.println("disconnect");
 	disconnect();
 	return rs;
-}
-public void executeUpdateWrapper(String query,Vector<String> args) {
-	String q = "#upd"+query;
-	executeQuery(q,args);
 }
 }
