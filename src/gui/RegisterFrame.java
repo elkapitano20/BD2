@@ -31,7 +31,7 @@ public class RegisterFrame {
 	private JTextField textField_6;
 	private ActionListener actionListener;
 	
-	private Vector<String> dataValues = new Vector<String>(); 
+	public Vector<String> dataValues = new Vector<String>(); 
 	private Vector<JTextField> jFieldValues = new Vector<JTextField>();
 	
 	/**
@@ -87,20 +87,20 @@ public class RegisterFrame {
 		txtpnImi.setBackground(SystemColor.menu);
 		txtpnImi.setEditable(false);
 		txtpnImi.setText("Imi\u0119");
-		txtpnImi.setBounds(20, 60, 100, 20);
+		txtpnImi.setBounds(20, 90, 100, 20);
 		frame.getContentPane().add(txtpnImi);
 		
 		JTextPane txtpnNazwisko = new JTextPane();
 		txtpnNazwisko.setBackground(SystemColor.menu);
 		txtpnNazwisko.setText("Nazwisko");
-		txtpnNazwisko.setBounds(20, 90, 100, 20);
+		txtpnNazwisko.setBounds(20, 120, 100, 20);
 		frame.getContentPane().add(txtpnNazwisko);
 		
 		JTextPane txtpnPesel = new JTextPane();
 		txtpnPesel.setBackground(SystemColor.menu);
 		txtpnPesel.setEditable(false);
 		txtpnPesel.setText("PESEL");
-		txtpnPesel.setBounds(20, 120, 100, 20);
+		txtpnPesel.setBounds(20, 60, 100, 20);
 		frame.getContentPane().add(txtpnPesel);
 		
 		JTextPane txtpnUsername = new JTextPane();
