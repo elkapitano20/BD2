@@ -63,14 +63,6 @@ public class ProductsPanel extends JPanel {
 				String price = rs.getString("prodPrice");
 				String stat = rs.getString("prodStat");
 
-				/*String prodID  = rs.getString("PRODUCT_ID");
-				String catID = rs.getString("CATEGORY_ID");
-				String werProdID = rs.getString("WAREHOUSE_PRODUCT_ID");
-				String name  = rs.getString("NAME");
-				String opis = rs.getString("OPIS");
-				String price = rs.getString("PRICE");
-				String stat = rs.getString("STATUS");*/
-
 				data[count][0] = prodID;
 				data[count][1] = catID;
 				data[count][2] = werProdID;
@@ -78,20 +70,8 @@ public class ProductsPanel extends JPanel {
 				data[count][4] = opis;
 				data[count][5] = price;
 				data[count][6] = stat;
-
-				//Display values
-				/*System.out.print("prodID: " + prodID);
-				System.out.print(", catID: " + catID);
-				System.out.print(", werProdID: " + werProdID);
-				System.out.print(", name: " + name);
-				System.out.print(", opis: " + opis);
-				System.out.print(", price: " + price);
-				System.out.print(", stat: " + stat);
-				System.out.println();
-				System.out.println(rs.getFetchSize());*/
 				count++;
 			}
-			/*System.out.println(count);*/
 			JTable table = new JTable(data, columnNames);
 			table.setVisible(true);
 			JScrollPane scrollPane = new JScrollPane(table);
@@ -101,7 +81,6 @@ public class ProductsPanel extends JPanel {
 			add(scrollPane, BorderLayout.CENTER) ;
 		}catch (SQLException sqlEx){
 			System.out.println("Couldn't prepare statement");
-			//sqlEx.printStackTrace();
 		}
 
 	}

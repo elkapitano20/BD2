@@ -38,19 +38,6 @@ public class CartPanel extends JPanel {
 							"INNER JOIN CLIENTS cl " +
 							"ON c.CLIENT_ID = cl.CLIENT_ID";
 
-			/*String sql = "SELECT p.PRODUCT_ID AS prodID" +
-				", c.NAME AS categName" +
-				", w.QUANTITY AS warehQuantity" +
-				", p.NAME AS prodName" +
-				", p.OPIS AS prodOpis" +
-				", p.PRICE AS prodPrice" +
-				", p.STATUS AS prodStat " +
-				"FROM PRODUCTS p " +
-				"INNER JOIN CATEGORIES c " +
-				"ON p.CATEGORY_ID = c.CATEGORY_ID " +
-				"INNER JOIN WAREHOUSE w " +
-				"ON p.WAREHOUSE_PRODUCT_ID = w.WAREHOUSE_PRODUCT_ID";*/
-
 			Connector con = new Connector();
 			ResultSet rs1 = con.executeQuery(sql);
 			while(rs1.next()){
@@ -74,19 +61,8 @@ public class CartPanel extends JPanel {
 				data[count][3] = clientAdress;
 				data[count][4] = clientEmail;
 
-				//Display values
-				/*System.out.print("prodID: " + prodID);
-				System.out.print(", catID: " + catID);
-				System.out.print(", werProdID: " + werProdID);
-				System.out.print(", name: " + name);
-				System.out.print(", opis: " + opis);
-				System.out.print(", price: " + price);
-				System.out.print(", stat: " + stat);
-				System.out.println();
-				System.out.println(rs.getFetchSize());*/
 				count++;
 			}
-			/*System.out.println(count);*/
 			JTable table = new JTable(data, columnNames);
 			table.setVisible(true);
 			JScrollPane scrollPane = new JScrollPane(table);
@@ -95,7 +71,6 @@ public class CartPanel extends JPanel {
 			add(scrollPane, BorderLayout.CENTER) ;
 		}catch (SQLException sqlEx){
 			System.out.println("Couldn't prepare statement");
-			//sqlEx.printStackTrace();
 		}
 	}
 }

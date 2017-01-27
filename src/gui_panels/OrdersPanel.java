@@ -47,20 +47,8 @@ public class OrdersPanel extends JPanel {
 				data[count][0] = orderID;
 				data[count][1] = cartID;
 				data[count][2] = orderDate;
-
-				//Display values
-				/*System.out.print("prodID: " + prodID);
-				System.out.print(", catID: " + catID);
-				System.out.print(", werProdID: " + werProdID);
-				System.out.print(", name: " + name);
-				System.out.print(", opis: " + opis);
-				System.out.print(", price: " + price);
-				System.out.print(", stat: " + stat);
-				System.out.println();
-				System.out.println(rs.getFetchSize());*/
 				count++;
 			}
-			/*System.out.println(count);*/
 			JTable table = new JTable(data, columnNames);
 			table.setVisible(true);
 			JScrollPane scrollPane = new JScrollPane(table);
@@ -69,7 +57,6 @@ public class OrdersPanel extends JPanel {
 			add(scrollPane, BorderLayout.CENTER) ;
 		}catch (SQLException sqlEx){
 			System.out.println("Couldn't prepare statement");
-			//sqlEx.printStackTrace();
 		}
 	}
 }
