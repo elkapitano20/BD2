@@ -18,12 +18,10 @@ public class Main{
 	
 	public static void main(String[] args) {
 		Connector conn = new Connector();
-		conn.connect();
 		//exemplary query
 		conn.executeDB("#queSELECT * from CLIENTS",new Vector<String>());
 		loginFrame = new LoginFrame();
 		loginFrame.show();
-		conn.disconnect();
 	}
 	public static Client getClient() {
 		return client;
