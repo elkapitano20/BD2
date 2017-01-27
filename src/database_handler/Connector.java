@@ -3,6 +3,10 @@ package database_handler;
 import java.sql.*;
 import java.util.Vector;
 import java.math.*;
+/*
+ * Describes Connector class. 
+ * It is defined as singleton and provides wrappers for Database Connection operations with JDBC
+ */
 public class Connector {
 	
 static final String USER = "mkhombak";
@@ -10,7 +14,20 @@ static final String PASS = "mkhombak";
 
 static final String DB_URL = "jdbc:oracle:thin:@ora3.elka.pw.edu.pl:1521:ora3inf";
 
+protected Connector() {
+    // Exists only to defeat instantiation.
+ }
+
 static Connection conn = null;
+//handle for global instance of singleton
+public static Connector instance = null;
+
+public static Connector getInstance(){
+	if(instance == null){
+		instance = new Connector();
+	}
+	return instance;
+}
 
 public void connect() {
 	

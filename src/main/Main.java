@@ -17,9 +17,8 @@ public class Main{
 
 	
 	public static void main(String[] args) {
-		Connector conn = new Connector();
 		//exemplary query
-		conn.executeDB("#queSELECT * from CLIENTS",new Vector<String>());
+		Connector.getInstance().executeDB("#queSELECT * from CLIENTS",new Vector<String>());
 		loginFrame = new LoginFrame();
 		loginFrame.show();
 	}

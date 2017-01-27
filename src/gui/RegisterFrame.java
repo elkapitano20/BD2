@@ -54,9 +54,8 @@ public class RegisterFrame {
 			private void saveRegistrationForm() {
 		if(obtainValues())
 		{
-			Connector conn = new Connector();
 			String query = "#updINSERT INTO CLIENTS(CLIENT_ID, FIRST_NAME, LAST_NAME, USERNAME, ADDRESS, EMAIL, CONTACT_NUMBER) VALUES(?,?,?,?,?,?,?)";
-			conn.executeDB(query, dataValues);
+			Connector.getInstance().executeDB(query, dataValues);
 		}else{
 		alertFrame = new JFrame();
 		JOptionPane.showMessageDialog(alertFrame, "Wszystkie pola musz¹ byæ wype³nione !");
