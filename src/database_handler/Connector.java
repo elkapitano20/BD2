@@ -63,7 +63,7 @@ public ResultSet executeDB(String query, Vector<String> args) {
 		stmt.setLong(1,Integer.parseInt(args.elementAt(0)));
 		for(int i=1; i<args.size(); i++)
 		{
-			stmt.setString(i+1,args.elementAt(i));//args for prepares stmts are indexed from 1!
+			stmt.setString(i+1,args.elementAt(i));//args for prepared stmts are indexed from 1!
 		}
 		stmt.executeUpdate();
 		break;
@@ -78,9 +78,10 @@ public ResultSet executeDB(String query, Vector<String> args) {
 			System.out.println(statement);
 			throw new RuntimeException("Improper command selected");
 	}
-	System.out.println("poza switchem");
+
 	if(stmt != null)
 		stmt.close();
+	
 	}catch (SQLException sqlEx){
 		System.out.println("Couldn't prepare statement");
 		sqlEx.printStackTrace();
