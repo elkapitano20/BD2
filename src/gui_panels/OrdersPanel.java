@@ -21,28 +21,14 @@ public class OrdersPanel extends JPanel {
 	 */
 	public OrdersPanel() {
 		setLayout(new BorderLayout());
-		//setBackground(new Color(77,81,84));
 
 		String[] columnNames = {"ID Zamuwienia",
 				"ID Faktury",
 				"Data zamuwienia"};
 
+
 		try{
 			String sql = "SELECT * FROM ORDERS";
-
-			/*String sql = "SELECT p.PRODUCT_ID AS prodID" +
-					", c.NAME AS categName" +
-					", w.QUANTITY AS warehQuantity" +
-					", p.NAME AS prodName" +
-					", p.OPIS AS prodOpis" +
-					", p.PRICE AS prodPrice" +
-					", p.STATUS AS prodStat " +
-					"FROM PRODUCTS p " +
-					"INNER JOIN CATEGORIES c " +
-					"ON p.CATEGORY_ID = c.CATEGORY_ID " +
-					"INNER JOIN WAREHOUSE w " +
-					"ON p.WAREHOUSE_PRODUCT_ID = w.WAREHOUSE_PRODUCT_ID";*/
-
 
 			Connector con = new Connector();
 			ResultSet rs1 = con.executeQuery(sql);

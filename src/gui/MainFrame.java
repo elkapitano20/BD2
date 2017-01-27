@@ -51,7 +51,7 @@ public class MainFrame {
 				case "Koszyk":
 					setCurrentPanel(new CartPanel());
 					break;
-				case "Oddzia�y":
+				case "Oddzia\u0142y":
 					setCurrentPanel(new DepartmentsPanel());
 					break;
 				case "Wyszukaj":
