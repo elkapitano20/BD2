@@ -2,6 +2,7 @@ package gui;
 
 import javax.swing.*;
 
+import database_handler.Connector;
 import exceptions.LoginException;
 import main.LoginData;
 import main.Main;
@@ -9,6 +10,8 @@ import main.Main;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
 public class LoginFrame {
@@ -56,6 +59,9 @@ public class LoginFrame {
 								"Niepoprawne dane logowania",
 								"Wrong Login or password!",
 								JOptionPane.WARNING_MESSAGE);
+					}catch (SQLException sqlE)
+					{
+						sqlE.getStackTrace();
 					}
 				}
 				
@@ -66,15 +72,31 @@ public class LoginFrame {
 	}
 
 
-	protected boolean login(LoginData loginObj) throws LoginException{
-			for (LoginData x : logDatLst) {
-				if (Objects.equals(x.getLogin(), loginObj.getLogin()) && Objects.equals(x.getPassword(), loginObj.getPassword())) {
-					//System.out.print("Hello");
-					return true;
-				}
+	protected boolean login(LoginData loginObj) throws LoginException, SQLException{
+		Vector<String> login = new Vector<String>();
+		login.addElement(loginObj.getLogin());
+		System.out.println(login.get(0));
+		ResultSet rs = null;
+		rs = Connector.getInstance().executeDB("#queSELECT PASSWORD FROM CLIENTS WHERE USERNAME = ?",login);
+		
+		if(rs != null){
+			while (rs.next()){
+			if(rs.getString("PASSWORD") == loginObj.getPassword()){
+				System.out.println("pass matches~!");
+				return true;
 			}
-		//System.out.print("Bye");
-		throw new LoginException();
+			}
+		}else{
+			System.out.println("pass dont match~!");
+			frameAlert = new JFrame();
+			JOptionPane.showMessageDialog(frameAlert,
+					"Brak klienta",
+					"No client with this username had been found!",
+					JOptionPane.WARNING_MESSAGE);
+			throw new LoginException();
+		}
+		System.out.println("login - false");
+		return false;
 	}
 
 	/**

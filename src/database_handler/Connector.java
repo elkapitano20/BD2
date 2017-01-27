@@ -89,7 +89,12 @@ public ResultSet executeDB(String query, Vector<String> args) {
 	case "#ins":
 		break;
 	case "#que":
-	rs = stmt.executeQuery(statement);
+		for(int i=0; i<args.size(); i++)
+		{
+			System.out.println(args.elementAt(i));
+			stmt.setString(i+1,args.elementAt(i));//args for prepared stmts are indexed from 1!
+		}
+	rs = stmt.executeQuery();
 	break;
 		default:
 			System.out.println(statement);
