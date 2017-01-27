@@ -5,9 +5,7 @@ import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.sun.xml.internal.bind.v2.TODO;
 import database_handler.*;
-import database_objects.Product;
 
 public class ProductsPanel extends JPanel {
 
@@ -34,17 +32,17 @@ public class ProductsPanel extends JPanel {
 
 		try{
 			String sql = "SELECT p.PRODUCT_ID AS prodID" +
-								", c.NAME AS categName" +
-								", w.QUANTITY AS warehQuantity" +
-								", p.NAME AS prodName" +
-								", p.OPIS AS prodOpis" +
-								", p.PRICE AS prodPrice" +
-								", p.STATUS AS prodStat " +
-								"FROM PRODUCTS p " +
-								"INNER JOIN CATEGORIES c " +
-									"ON p.CATEGORY_ID = c.CATEGORY_ID " +
-								"INNER JOIN WAREHOUSE w " +
-									"ON p.WAREHOUSE_PRODUCT_ID = w.WAREHOUSE_PRODUCT_ID";
+					", c.NAME AS categName" +
+					", w.QUANTITY AS warehQuantity" +
+					", p.NAME AS prodName" +
+					", p.OPIS AS prodOpis" +
+					", p.PRICE AS prodPrice" +
+					", p.STATUS AS prodStat " +
+					"FROM PRODUCTS p " +
+					"INNER JOIN CATEGORIES c " +
+					"ON p.CATEGORY_ID = c.CATEGORY_ID " +
+					"INNER JOIN WAREHOUSE w " +
+					"ON p.WAREHOUSE_PRODUCT_ID = w.WAREHOUSE_PRODUCT_ID";
 
 
 			Connector con = new Connector();
@@ -98,6 +96,7 @@ public class ProductsPanel extends JPanel {
 			table.setVisible(true);
 			JScrollPane scrollPane = new JScrollPane(table);
 			table.setFillsViewportHeight(true);
+			
 
 			add(scrollPane, BorderLayout.CENTER) ;
 		}catch (SQLException sqlEx){
@@ -107,5 +106,3 @@ public class ProductsPanel extends JPanel {
 
 	}
 }
-
-

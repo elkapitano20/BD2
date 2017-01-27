@@ -18,6 +18,7 @@ public class MainFrame {
 	private JTextField searchTxtField;
 	private JPanel panel;
 	private ActionListener actionListener;
+	//private boolean rep = true;
 	/**
 	 * Create the application.
 	 */
@@ -40,8 +41,9 @@ public class MainFrame {
 				case "Ustawienia":
 					setCurrentPanel(new SettingsPanel());
 					break;
-				case "Zam�wienia":
+				case "Zam\u00F3wienia":
 					setCurrentPanel(new OrdersPanel());
+					//rep = false;
 					break;
 				case "Administracja":
 					setCurrentPanel(new AdminPanel());
@@ -139,11 +141,23 @@ public class MainFrame {
 		panel = t;
 		panel.setBounds(0, 72, 784, 489);
 		//panel.setLayout(null);
-		frame.getContentPane().add(panel);
+		panel.setVisible(true);
 		frame.repaint();
+		frame.getContentPane().add(panel);
+		frame.revalidate();
 	}
 
 	public void dispose() {
 		frame.dispose();
 	}
+
+	/*private void showProduktsPanel() {
+		frame.getContentPane().remove(panel);
+		SzukajWidok widok = new SzukajWidok(this);
+		kontentPanel = widok.getPanel1();
+		kontentPanel.setVisible(true);
+		panelGlownyAdmin.repaint();
+		frame.getContentPane().add(kontentPanel);
+		frame.revalidate();
+	}*/
 }
