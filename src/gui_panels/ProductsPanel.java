@@ -2,54 +2,85 @@ package gui_panels;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import database_handler.*;
 
 public class ProductsPanel extends JPanel {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 2L;
-	
-
+	private static int count = 0;
+	private static int rsSize = 0;
 	/**
 	 * Create the panel.
 	 */
 	public ProductsPanel() {
 		setLayout(new BorderLayout());
-		setBackground(new Color(77,81,84));
 
-		String[] columnNames = {"First Name",
-				"Last Name",
-				"Sport",
-				"# of Years",
-				"Vegetarian"};
+		String[] columnNames = {"ID Produktu",
+				"Categoria",
+				"Ilość produktów w magazynie",
+				"Nazwa produktu",
+				"Opis produktu",
+				"Cena produktu",
+				"Status"};
 
-		Object[][] data = {
-				{"Kathy", "Smith",
-						"Snowboarding", new Integer(5), new Boolean(false)},
-				{"John", "Doe",
-						"Rowing", new Integer(3), new Boolean(true)},
-				{"Sue", "Black",
-						"Knitting", new Integer(2), new Boolean(false)},
-				{"Jane", "White",
-						"Speed reading", new Integer(20), new Boolean(true)},
-				{"Joe", "Brown",
-						"Pool", new Integer(10), new Boolean(false)}
-		};
+		try{
+			String sql = "SELECT p.PRODUCT_ID AS prodID" +
+					", c.NAME AS categName" +
+					", w.QUANTITY AS warehQuantity" +
+					", p.NAME AS prodName" +
+					", p.OPIS AS prodOpis" +
+					", p.PRICE AS prodPrice" +
+					", p.STATUS AS prodStat " +
+					"FROM PRODUCTS p " +
+					"INNER JOIN CATEGORIES c " +
+					"ON p.CATEGORY_ID = c.CATEGORY_ID " +
+					"INNER JOIN WAREHOUSE w " +
+					"ON p.WAREHOUSE_PRODUCT_ID = w.WAREHOUSE_PRODUCT_ID";
 
-		JTable table = new JTable(data, columnNames);
-		table.setVisible(true);
-		JScrollPane scrollPane = new JScrollPane(table);
-		table.setFillsViewportHeight(true);
 
-		/*setLayout(new BorderLayout());
-		add(table.getTableHeader(), BorderLayout.PAGE_START);
-		add(table, BorderLayout.CENTER);*/
-//		add(table, BorderLayout.CENTER);
-		add(scrollPane, BorderLayout.CENTER) ;
+			Connector con = Connector.getInstance();
+			ResultSet rs1 = con.executeDB("#que"+sql, null);
+			while(rs1.next()){
+				rsSize++;
+			}
+			ResultSet rs = con.executeDB("#que"+sql, null);
+			Object[][] data = new Object[rsSize][7];
+			while(rs.next()){
 
-		/*JLabel txtpnHelloFromProducts = new JLabel("Hello from products panel");
-		txtpnHelloFromProducts.setBounds(50, 100, 150, 20);
-		add(txtpnHelloFromProducts);*/
+				//Retrieve by column name
+				String prodID  = rs.getString("prodID");
+				String catID = rs.getString("categName");
+				String werProdID = rs.getString("warehQuantity");
+				String name  = rs.getString("prodName");
+				String opis = rs.getString("prodOpis");
+				String price = rs.getString("prodPrice");
+				String stat = rs.getString("prodStat");
+
+				data[count][0] = prodID;
+				data[count][1] = catID;
+				data[count][2] = werProdID;
+				data[count][3] = name;
+				data[count][4] = opis;
+				data[count][5] = price;
+				data[count][6] = stat;
+				count++;
+			}
+			JTable table = new JTable(data, columnNames);
+			table.setVisible(true);
+			JScrollPane scrollPane = new JScrollPane(table);
+			table.setFillsViewportHeight(true);
+			
+
+			add(scrollPane, BorderLayout.CENTER) ;
+		}catch (SQLException sqlEx){
+			System.out.println("Couldn't prepare statement");
+		}
+
 	}
 }

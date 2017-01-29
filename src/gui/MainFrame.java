@@ -18,6 +18,7 @@ public class MainFrame {
 	private JTextField searchTxtField;
 	private JPanel panel;
 	private ActionListener actionListener;
+	//private boolean rep = true;
 	/**
 	 * Create the application.
 	 */
@@ -27,7 +28,7 @@ public class MainFrame {
 			
 			/*
 			 * IMPORTANT!!!!
-			 * Ta metoda jest do przemieszczania pomiêdzy zawartoœci¹ poszczególnych zak³adek w menu g³ównym. Zawartoœci tych zak³adek s¹ w panelu gui_panels
+			 * Ta metoda jest do przemieszczania pomiï¿½dzy zawartoï¿½ciï¿½ poszczegï¿½lnych zakï¿½adek w menu gï¿½ï¿½wnym. Zawartoï¿½ci tych zakï¿½adek sï¿½ w panelu gui_panels
 			 * 
 			 */
 			@Override
@@ -40,8 +41,9 @@ public class MainFrame {
 				case "Ustawienia":
 					setCurrentPanel(new SettingsPanel());
 					break;
-				case "Zamówienia":
+				case "Zam\u00F3wienia":
 					setCurrentPanel(new OrdersPanel());
+					//rep = false;
 					break;
 				case "Administracja":
 					setCurrentPanel(new AdminPanel());
@@ -49,7 +51,7 @@ public class MainFrame {
 				case "Koszyk":
 					setCurrentPanel(new CartPanel());
 					break;
-				case "Oddzia³y":
+				case "Oddzia\u0142y":
 					setCurrentPanel(new DepartmentsPanel());
 					break;
 				case "Wyszukaj":
@@ -140,10 +142,24 @@ public class MainFrame {
 		panel.setBounds(0, 72, 784, 489);
 //		panel.setLayout(null);
 		frame.getContentPane().add(panel);
+		//panel.setLayout(null);
+		panel.setVisible(true);
 		frame.repaint();
+		frame.getContentPane().add(panel);
+		frame.revalidate();
 	}
 
 	public void dispose() {
 		frame.dispose();
 	}
+
+	/*private void showProduktsPanel() {
+		frame.getContentPane().remove(panel);
+		SzukajWidok widok = new SzukajWidok(this);
+		kontentPanel = widok.getPanel1();
+		kontentPanel.setVisible(true);
+		panelGlownyAdmin.repaint();
+		frame.getContentPane().add(kontentPanel);
+		frame.revalidate();
+	}*/
 }
