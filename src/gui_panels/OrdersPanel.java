@@ -22,20 +22,22 @@ public class OrdersPanel extends JPanel {
 	public OrdersPanel() {
 		setLayout(new BorderLayout());
 
-		String[] columnNames = {"ID Zamuwienia",
+		String[] columnNames = {"ID Zamówienia",
 				"ID Faktury",
-				"Data zamuwienia"};
+				"Data zamówienia"};
 
 
 		try{
 			String sql = "SELECT * FROM ORDERS";
 
 			Connector con = Connector.getInstance();
-			ResultSet rs1 = con.executeDB("que"+sql, null);
+			con.connect();
+			ResultSet rs1 = con.executeQuery(sql, null);
 			while(rs1.next()){
 				rsSize++;
 			}
-			ResultSet rs =  con.executeDB("que"+sql, null);
+			ResultSet rs =  con.executeQuery(sql, null);
+			
 			Object[][] data = new Object[rsSize][3];
 			while(rs.next()){
 
@@ -49,11 +51,12 @@ public class OrdersPanel extends JPanel {
 				data[count][2] = orderDate;
 				count++;
 			}
+			con.disconnect();
 			JTable table = new JTable(data, columnNames);
 			table.setVisible(true);
 			JScrollPane scrollPane = new JScrollPane(table);
 			table.setFillsViewportHeight(true);
-
+			scrollPane.setVisible(true);
 			add(scrollPane, BorderLayout.CENTER) ;
 		}catch (SQLException sqlEx){
 			System.out.println("Couldn't prepare statement");

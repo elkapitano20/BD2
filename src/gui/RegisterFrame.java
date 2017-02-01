@@ -4,7 +4,6 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Statement;
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -14,7 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
-import database_handler.*;
+import database_handler.Connector;
 import main.Main;
 
 public class RegisterFrame {
@@ -43,7 +42,7 @@ public class RegisterFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String command = e.getActionCommand();
-				if (command == "Zarejestruj siê"){
+				if (command == "Zarejestruj siï¿½"){
 					saveRegistrationForm();
 				}
 				else{
@@ -58,7 +57,7 @@ public class RegisterFrame {
 			Connector.getInstance().executeDB(query, dataValues);
 		}else{
 		alertFrame = new JFrame();
-		JOptionPane.showMessageDialog(alertFrame, "Wszystkie pola musz¹ byæ wype³nione !");
+		JOptionPane.showMessageDialog(alertFrame, "Wszystkie pola muszï¿½ byï¿½ wypeï¿½nione !");
 		}
 			}
 		};
@@ -165,12 +164,12 @@ public class RegisterFrame {
 		frame.getContentPane().add(textField_6);
 		textField_6.setColumns(10);
 		
-		JButton registerBtn = new JButton("Zarejestruj siê");
+		JButton registerBtn = new JButton("Zarejestruj siï¿½");
 		registerBtn.setBounds(360, 299, 110, 20);
 		registerBtn.addActionListener(actionListener);
 		frame.getContentPane().add(registerBtn);
 		
-		JButton backToLoginBtn = new JButton("Powrót");
+		JButton backToLoginBtn = new JButton("Powrï¿½t");
 		backToLoginBtn.setBounds(360, 330, 110, 20);
 		backToLoginBtn.addActionListener(actionListener);
 		frame.getContentPane().add(backToLoginBtn);

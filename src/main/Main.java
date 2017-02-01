@@ -1,12 +1,12 @@
 package main;
 
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
+
 import database_objects.Client;
 import gui.LoginFrame;
 import gui.MainFrame;
 import gui.RegisterFrame;
-import java.util.Vector;
-
-import database_handler.*;
 public class Main{
 
 	private static LoginFrame loginFrame;
@@ -16,9 +16,9 @@ public class Main{
 
 
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NoSuchAlgorithmException, SQLException {
 		//exemplary query
-		Connector.getInstance().executeDB("#queSELECT * from CLIENTS",new Vector<String>());
+//		Connector conn = Connector.getInstance();
 		loginFrame = new LoginFrame();
 		loginFrame.show();
 	}

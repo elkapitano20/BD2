@@ -39,11 +39,13 @@ public class CartPanel extends JPanel {
 							"ON c.CLIENT_ID = cl.CLIENT_ID";
 
 			Connector con =  Connector.getInstance();
-			ResultSet rs1 = con.executeDB("#que" +sql,null);
+			con.connect();
+			ResultSet rs1 = con.executeQuery(sql,null);
 			while(rs1.next()){
 				rsSize++;
 			}
-			ResultSet rs = con.executeDB("#que" +sql,null);
+			ResultSet rs = con.executeQuery(sql,null);
+			
 			Object[][] data = new Object[rsSize][5];
 			while(rs.next()){
 
@@ -63,11 +65,11 @@ public class CartPanel extends JPanel {
 
 				count++;
 			}
+			con.disconnect();
 			JTable table = new JTable(data, columnNames);
 			table.setVisible(true);
 			JScrollPane scrollPane = new JScrollPane(table);
 			table.setFillsViewportHeight(true);
-
 			add(scrollPane, BorderLayout.CENTER) ;
 		}catch (SQLException sqlEx){
 			System.out.println("Couldn't prepare statement");

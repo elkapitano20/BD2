@@ -30,11 +30,15 @@ public class DepartmentsPanel extends JPanel {
 			String sql = "SELECT * FROM STORES";
 
 			Connector con = Connector.getInstance();
-			ResultSet rs1 = con.executeDB("#que" + sql, null);
+			con.connect();
+			ResultSet rs1 = con.executeQuery(sql, null);
+			con.disconnect();
 			while(rs1.next()){
 				rsSize++;
 			}
-			ResultSet rs = con.executeDB("#que" + sql, null);
+			con.connect();
+			ResultSet rs = con.executeQuery(sql, null);
+			con.disconnect();
 			Object[][] data = new Object[rsSize][3];
 			while(rs.next()){
 

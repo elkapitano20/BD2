@@ -1,39 +1,27 @@
 package database_objects;
 
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  * Created by savch on 21.01.2017.
  * All rights is okey =)
  */
 public class Warehouse {
-    private int priceProdWar;
-    private String aboutProdWar;
-    private String aboutWar;
     private int idPozMagaz;
+    private int quantity;
 
-    public int getPriceProdWar() {
-        return priceProdWar;
+    public Warehouse(int id, int quant){
+    	idPozMagaz = id;
+    	quantity = quant;
     }
-
-    public void setPriceProdWar(int priceProdWar) {
-        this.priceProdWar = priceProdWar;
+    
+    public void create(Statement stmt) throws SQLException{
+    	StringBuilder sb = new StringBuilder();
+    	sb.append("INSERT INTO WAREHOUSE (WAREHOUSE_PRODUCT_ID, QUANTITY) VALUES (").append(idPozMagaz).append(", ").append(quantity).append(")");
+    	System.out.println(sb.toString());
+    	stmt.execute(sb.toString());
     }
-
-    public String getAboutProdWar() {
-        return aboutProdWar;
-    }
-
-    public void setAboutProdWar(String aboutProdWar) {
-        this.aboutProdWar = aboutProdWar;
-    }
-
-    public String getAboutWar() {
-        return aboutWar;
-    }
-
-    public void setAboutWar(String aboutWar) {
-        this.aboutWar = aboutWar;
-    }
-
     public int getIdPozMagaz() {
         return idPozMagaz;
     }
@@ -41,4 +29,12 @@ public class Warehouse {
     public void setIdPozMagaz(int idPozMagaz) {
         this.idPozMagaz = idPozMagaz;
     }
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 }

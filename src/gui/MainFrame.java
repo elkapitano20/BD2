@@ -8,7 +8,6 @@ import javax.swing.JTextField;
 import gui_panels.*;
 import main.Main;
 
-import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -80,7 +79,6 @@ public class MainFrame {
 		frame.getContentPane().setLayout(null);
 		
 		JButton productBtn = new JButton("Produkty");
-		productBtn.setBackground(SystemColor.menu);
 		productBtn.setBounds(30, 10, 100, 20);
 		productBtn.addActionListener(actionListener);
 		frame.getContentPane().add(productBtn);
@@ -111,7 +109,7 @@ public class MainFrame {
 		frame.getContentPane().add(departmentsBtn);
 		
 		JButton searchBtn = new JButton("Wyszukaj");
-		searchBtn.setBounds(545, 45, 85, 20);
+		searchBtn.setBounds(545, 45, 120, 20);
 		searchBtn.addActionListener(actionListener);
 		frame.getContentPane().add(searchBtn);
 		
@@ -144,8 +142,8 @@ public class MainFrame {
 		frame.getContentPane().add(panel);
 		//panel.setLayout(null);
 		panel.setVisible(true);
-		frame.repaint();
 		frame.getContentPane().add(panel);
+		frame.repaint();
 		frame.revalidate();
 	}
 
