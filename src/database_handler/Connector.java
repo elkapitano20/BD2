@@ -99,6 +99,14 @@ public class Connector {
 			case "#del":
 				break;
 			case "#ins":
+				for (int i = 0; i < args.size(); i++) {
+					try{
+						stmt.setDouble(i+1, Double.parseDouble(args.elementAt(i)));
+					}catch (Exception e){
+						stmt.setString(i + 1, args.elementAt(i));
+					}
+				}
+				stmt.executeUpdate();
 				break;
 			default:
 				System.out.println(statement);

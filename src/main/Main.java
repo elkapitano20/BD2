@@ -17,8 +17,6 @@ public class Main{
 
 	
 	public static void main(String[] args) throws NoSuchAlgorithmException, SQLException {
-		//exemplary query
-//		Connector conn = Connector.getInstance();
 		loginFrame = new LoginFrame();
 		loginFrame.show();
 	}
@@ -26,15 +24,16 @@ public class Main{
 		return client;
 	}
 
-	public static void setClient(String login) {
-		client = null;
+	public static void setClient(String login, int i) {
+		client = new Client(login, i);
 	}
 
-	public static void goToMainFrame() {
+	public static void goToMainFrame() throws SQLException {
 		loginFrame.dispose();
 		loginFrame = null;
 		mainFrame = new MainFrame();
 		mainFrame.show();
+		client.setIdKoszyka();
 	}
 	
 	public static void goToRegisterFrame() {

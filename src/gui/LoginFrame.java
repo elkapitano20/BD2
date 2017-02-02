@@ -54,7 +54,6 @@ public class LoginFrame {
 						LoginData logDat = new LoginData(login, password);
 
 						if (login(logDat)) {
-							Main.setClient(logDat.getLogin());
 							Main.goToMainFrame();
 						}
 					} catch (LoginException e1) {
@@ -82,13 +81,13 @@ public class LoginFrame {
 		Vector<String> login = new Vector<String>();
 		login.addElement(loginObj.getLogin());
 		Connector.getInstance().connect();
-		ResultSet rs = Connector.getInstance().executeQuery("SELECT PASSWORD FROM CLIENTS WHERE USERNAME = ?", login);
+		ResultSet rs = Connector.getInstance().executeQuery("SELECT CLIENT_ID, PASSWORD FROM CLIENTS WHERE USERNAME = ?", login);
 		boolean isValid = false;
 		while (rs.next()) {
 			String s = rs.getString("PASSWORD");
-			System.out.println(s);
 			if (s.equals(loginObj.getPassword())) {
 				System.out.println("pass matches~!");
+				Main.setClient(login.elementAt(0), rs.getInt("CLIENT_ID"));
 				isValid = true;
 			} else {
 				System.out.println("pass dont match~!");

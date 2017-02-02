@@ -1,5 +1,11 @@
 package database_objects;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+
+import database_handler.Connector;
+
 public class Client {
     private int idClient;
     private int idKoszyka;
@@ -11,7 +17,12 @@ public class Client {
     private String emailClient;
     private String telephoneClient;
 
-    public void setIdClient(int idClient) {
+    public Client(String login, int i) {
+    	usernameClient = login;
+    	idClient = i;
+    }
+
+	public void setIdClient(int idClient) {
         this.idClient = idClient;
     }
 
@@ -83,4 +94,31 @@ public class Client {
     public String getTelephoneClient() {
         return telephoneClient;
     }
+
+	public void setIdKoszyka() throws SQLException{
+		Connector con = Connector.getInstance();
+		con.connect();
+		String getCartNoOrderSQL = "SELECT * FROM CARTS WHERE CLIENT_ID = ? AND (SELECT COUNT(*) FROM ORDERS o INNER JOIN CARTS c ON c.CART_ID = o.CART_ID WHERE c.CLIENT_ID = ?)=0";
+		Vector <String> clientId = new Vector<String>();
+		clientId.add(String.valueOf(idClient));
+		clientId.add(String.valueOf(idClient));
+		ResultSet rs = con.executeQuery(getCartNoOrderSQL, clientId);
+		boolean isEmpty=true;
+		
+		while(rs.next()){
+			isEmpty= false;
+			idKoszyka = rs.getInt("CART_ID");
+		}
+		rs.close();
+		if (isEmpty){
+			ResultSet rs1 = con.executeQuery("SELECT MAX(CART_ID) FROM CARTS", new Vector<String>());
+			while(rs1.next()){
+				idKoszyka = rs.getInt(1) +1;
+			}
+			rs1.close();
+			String insertCart = "#insINSERT INTO CARTS (CLIENT_ID, CART_ID) VALUES (" + idClient + ", " + idKoszyka + ")";
+			con.executeDB(insertCart, new Vector<String>());
+		}
+		con.disconnect();
+	}
 }

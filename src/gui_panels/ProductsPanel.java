@@ -9,7 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.UIManager;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
@@ -53,7 +54,7 @@ public class ProductsPanel extends JPanel {
 			con.connect();
 			ResultSet rs1 = con.executeQuery("SELECT COUNT(*) FROM PRODUCTS", null);
 			while(rs1.next()){
-				rsSize = rs1.getInt(1);
+				rsSize = rs1.getInt(1) +1;
 			}
 			ResultSet rs = con.executeQuery(sql, null);
 
@@ -75,11 +76,26 @@ public class ProductsPanel extends JPanel {
 				data[count][5] = prodID;
 				count++;
 			}
+			count = 0;
 	        DefaultTableModel dm = new DefaultTableModel();
 	        dm.setDataVector(data, columnNames);
 	        JTable table = new JTable(dm);
 	        table.setVisible(true);
 	        table.getColumn("Koszyk").setCellRenderer(new ButtonRenderer());
+	        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+				
+				@Override
+				public void valueChanged(ListSelectionEvent e) {
+					if (table.getSelectedColumn() == 5){
+						try {
+							addToCart(table.getValueAt(table.getSelectedRow(), 5));
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+					}
+					
+				}
+			});
 	        table.setFillsViewportHeight(true);
 			con.disconnect();
 			table.setVisible(true);
@@ -94,35 +110,25 @@ public class ProductsPanel extends JPanel {
 
 	}
 	
+	private void addToCart(Object object) throws SQLException{
+		AddToCart.getInsance(object);
+		
+	}
+	
     @SuppressWarnings("serial")
 	class ButtonRenderer extends JButton implements TableCellRenderer {
-        private boolean isClicked = false;
         public ButtonRenderer() {
             setOpaque(true);
         }
 
         public Component getTableCellRendererComponent(JTable table, Object value,
                                                        boolean isSelected, boolean hasFocus, int row, int column) {
-            if (isSelected && !isClicked && column==5) {
-                try {
-                	isClicked = true;
-                    addToCart((value == null) ? "" : value.toString());
-                    
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                setForeground(table.getForeground());
-                setBackground(UIManager.getColor("Button.background"));
-                isClicked = false;
-            }
             setText("Do koszyka");
             return this;
         }
 
-		private void addToCart(Object object) throws SQLException{
-			AddToCart.getInsance(object);
-			
-		}
+
     }
+    
+
 }
