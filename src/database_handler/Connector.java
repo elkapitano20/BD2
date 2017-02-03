@@ -86,7 +86,7 @@ public class Connector {
 			switch (command) {
 			case "#upd":
 
-				stmt.setLong(1, Integer.parseInt(args.elementAt(0)));
+				stmt.setLong(1, Long.parseLong(args.elementAt(0)));
 				for (int i = 1; i < args.size(); i++) {
 					stmt.setString(i + 1, args.elementAt(i));// args for
 																// prepared
