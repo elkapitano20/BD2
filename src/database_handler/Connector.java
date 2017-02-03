@@ -112,7 +112,7 @@ public class Connector {
 				System.out.println(statement);
 				throw new RuntimeException("Improper command selected");
 			}
-
+			conn.commit();
 			if (stmt != null)
 				stmt.close();
 
@@ -120,6 +120,7 @@ public class Connector {
 			System.out.println("Couldn't prepare statement");
 			sqlEx.printStackTrace();
 		}
+		
 		disconnect();
 	}
 

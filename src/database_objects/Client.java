@@ -113,7 +113,7 @@ public class Client {
 		if (isEmpty){
 			ResultSet rs1 = con.executeQuery("SELECT MAX(CART_ID) FROM CARTS", new Vector<String>());
 			while(rs1.next()){
-				idKoszyka = rs.getInt(1) +1;
+				idKoszyka = rs1.getInt(1) +1;
 			}
 			rs1.close();
 			String insertCart = "#insINSERT INTO CARTS (CLIENT_ID, CART_ID) VALUES (" + idClient + ", " + idKoszyka + ")";

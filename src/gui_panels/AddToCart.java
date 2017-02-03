@@ -126,7 +126,7 @@ public class AddToCart extends JFrame implements WindowListener{
 		contentPane.add(lblCenaZaSztuk);
 		
 		JLabel label = new JLabel(String.valueOf(price));
-		label.setBounds(162, 137, 70, 15);
+		label.setBounds(165, 112, 70, 15);
 		contentPane.add(label);
 		this.addWindowListener(this);
 		this.setVisible(true);

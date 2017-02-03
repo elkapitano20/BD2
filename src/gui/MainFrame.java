@@ -37,24 +37,24 @@ public class MainFrame {
 				case "Produkty":
 					setCurrentPanel(new ProductsPanel());
 					break;
-				case "Ustawienia":
-					setCurrentPanel(new SettingsPanel());
-					break;
+//				case "Ustawienia":
+//					setCurrentPanel(new SettingsPanel());
+//					break;
 				case "Zam\u00F3wienia":
 					setCurrentPanel(new OrdersPanel());
 					//rep = false;
 					break;
-				case "Administracja":
-					setCurrentPanel(new AdminPanel());
-					break;
+//				case "Administracja":
+//					setCurrentPanel(new AdminPanel());
+//					break;
 				case "Koszyk":
 					setCurrentPanel(new CartPanel());
 					break;
-				case "Oddzia\u0142y":
-					setCurrentPanel(new DepartmentsPanel());
-					break;
+//				case "Oddzia\u0142y":
+//					setCurrentPanel(new DepartmentsPanel());
+//					break;
 				case "Wyszukaj":
-					setCurrentPanel(new SearchPanel());
+					setCurrentPanel(new ProductsPanel(searchTxtField.getText()));
 					break;
 				case "Wyloguj":
 					Main.logout();
@@ -79,37 +79,37 @@ public class MainFrame {
 		frame.getContentPane().setLayout(null);
 		
 		JButton productBtn = new JButton("Produkty");
-		productBtn.setBounds(30, 10, 100, 20);
+		productBtn.setBounds(30, 10, 150, 20);
 		productBtn.addActionListener(actionListener);
 		frame.getContentPane().add(productBtn);
 		
-		JButton settingsBtn = new JButton("Ustawienia");
-		settingsBtn.setBounds(135, 10, 100, 20);
-		settingsBtn.addActionListener(actionListener);
-		frame.getContentPane().add(settingsBtn);
+//		JButton settingsBtn = new JButton("Ustawienia");
+//		settingsBtn.setBounds(135, 10, 100, 20);
+//		settingsBtn.addActionListener(actionListener);
+//		frame.getContentPane().add(settingsBtn);
 		
 		JButton ordersBtn = new JButton("Zam\u00F3wienia");
-		ordersBtn.setBounds(240, 10, 100, 20);
+		ordersBtn.setBounds(200, 10, 150, 20);
 		ordersBtn.addActionListener(actionListener);
 		frame.getContentPane().add(ordersBtn);
 		
-		JButton adminBtn = new JButton("Administracja");
-		adminBtn.setBounds(345, 10, 100, 20);
-		adminBtn.addActionListener(actionListener);
-		frame.getContentPane().add(adminBtn);
+//		JButton adminBtn = new JButton("Administracja");
+//		adminBtn.setBounds(345, 10, 100, 20);
+//		adminBtn.addActionListener(actionListener);
+//		frame.getContentPane().add(adminBtn);
 		
 		JButton cartBtn = new JButton("Koszyk");
-		cartBtn.setBounds(450, 10, 100, 20);
+		cartBtn.setBounds(370, 10, 150, 20);
 		cartBtn.addActionListener(actionListener);
 		frame.getContentPane().add(cartBtn);
-		
-		JButton departmentsBtn = new JButton("Oddzia\u0142y");
-		departmentsBtn.setBounds(555, 10, 100, 20);
-		departmentsBtn.addActionListener(actionListener);
-		frame.getContentPane().add(departmentsBtn);
+//		
+//		JButton departmentsBtn = new JButton("Oddzia\u0142y");
+//		departmentsBtn.setBounds(555, 10, 100, 20);
+//		departmentsBtn.addActionListener(actionListener);
+//		frame.getContentPane().add(departmentsBtn);
 		
 		JButton searchBtn = new JButton("Wyszukaj");
-		searchBtn.setBounds(545, 45, 120, 20);
+		searchBtn.setBounds(505, 45, 160, 20);
 		searchBtn.addActionListener(actionListener);
 		frame.getContentPane().add(searchBtn);
 		
@@ -120,12 +120,12 @@ public class MainFrame {
 		
 		searchTxtField = new JTextField();
 		searchTxtField.setToolTipText("Wyszukaj produkt");
-		searchTxtField.setBounds(180, 45, 356, 20);
+		searchTxtField.setBounds(180, 45, 300, 20);
 		frame.getContentPane().add(searchTxtField);
 		searchTxtField.setColumns(10);
 		
 		JButton logoutBtn = new JButton("Wyloguj");
-		logoutBtn.setBounds(660, 9, 100, 20);
+		logoutBtn.setBounds(600, 10, 150, 20);
 		logoutBtn.addActionListener(actionListener);
 		frame.getContentPane().add(logoutBtn);
 	}
